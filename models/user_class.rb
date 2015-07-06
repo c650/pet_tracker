@@ -9,10 +9,11 @@ class User
 		@age = age
 		@sanity = sanity
 		@num_of_pets = 0 
+    @pets = Hash.new
 	end
 
-	def feed_a_pet(pet, food)
-		pet.feed(food)
+	def feed_a_pet(pet)
+		pet.feed
 
 		if pet.mood == "angry"
 			if pet.type == "cat"
@@ -29,6 +30,14 @@ class User
 	end
 
 	def new_pet=(name, age, gender, type)
+    if type=="dog"
+      @pets[:dog].push(Pet.new(name, age, gender, type))
+    elsif type =="snake"
+      @pets[:snake].push(Pet.new(name, age, gender, type))
+    else 
+      @pets[:cat].push(Pet.new(name, age, gender, type))
+    end
+  end
 		
 	end
 end
